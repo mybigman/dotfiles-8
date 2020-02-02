@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+launch="spotifyd"
+kill="killall spotifyd"
+
+case "$1" in
+    "-s")
+        [ "$(ps -Ao fname | grep spotifyd | wc -l)" -gt "0" ] || $launch
+        break
+        ;;
+    "-r")
+        $kill
+        $launch
+        break
+        ;;
+    "-k")
+        $kill
+        break
+        ;;
+    *)
+        $launch
+        break
+        ;;
+esac

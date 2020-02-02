@@ -1,0 +1,13 @@
+# Set dpi
+xrandr --dpi 140
+xrdb -merge ${HOME}/.Xresources
+
+# Restart script to check battery status
+pkill -f "${SCRIPTS}/battery/check-status"
+${SCRIPTS}/battery/check-status &
+
+# Enable pixel-perfect scrolling in firefox
+export MOZ_USE_XINPUT2=1
+
+# Start bspwm
+exec bspwm

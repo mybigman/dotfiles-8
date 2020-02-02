@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+
+case $1 in
+    --increase|-i)
+        shift
+        pamixer --increase $@
+        echo "$(pamixer --get-volume)" > /tmp/xobpipes/vol
+        break
+        ;;
+    --decrease|-d)
+        shift
+        pamixer --decrease $@
+        echo "$(pamixer --get-volume)" > /tmp/xobpipes/vol
+        break
+        ;;
+    --toggle|-t)
+        shift
+        pamixer --toggle-mute
+        break
+        ;;
+    --get|-g)
+        shift
+        pamixer --get-volume
+        break
+        ;;
+    --help|-h)
+        echo "Set volume"
+        echo ""
+        echo "USAGE:"
+        echo "  ${0##*/} ACTION [ARG]"
+        echo ""
+        echo "ACTIONS:"
+        echo "  -i, --increase <NUMBER>   Increase volume"
+        echo "  -d, --decrease <NUMBER>   Decrease volume"
+        echo "  -t, --toggle              Toggle mute"
+        echo "  -g, --get                 Get current volume"
+        exit 0
+        ;;
+    *)
+        echo "Unknown option '$1' (Try --help)"
+        exit 1
+        ;;
+esac

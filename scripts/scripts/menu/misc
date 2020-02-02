@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+declare -A arr
+arr+=(
+[play media]="${SCRIPTS}/menu/play-media"
+)
+
+choice="$(printf "%s\n" "${!arr[@]}" | dmenu -i -p "other:")"
+[ ${?} = 0 ] && ${arr[$choice]}

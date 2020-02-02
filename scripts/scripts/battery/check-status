@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+while :; do
+	status=$(cat /sys/class/power_supply/BAT0/status)
+	percentage=$($SCRIPTS/battery/percentage)
+	if [ ${percentage} -lt 16 -a ${status} = "Discharging" ]; then
+		notify-send "Battery at ${percentage}%" "Please charge now"
+	fi
+	sleep 1m
+done

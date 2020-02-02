@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+xobpipesdir="/tmp/xobpipes"
+
+rm -r $xobpipesdir
+pkill -f "tail -f $xobpipesdir/bkl"
+pkill -f "tail -f $xobpipesdir/kbd"
+pkill -f "tail -f $xobpipesdir/vol"
+killall xob
+
+# Create folder
+mkdir $xobpipesdir
+
+# Pipe for backlight (screen brightness)
+mkfifo $xobpipesdir/bkl
+tail -f $xobpipesdir/bkl | xob &
+
+# Pipe for keyboard backlight
+mkfifo $xobpipesdir/kbd
+tail -f $xobpipesdir/kbd | xob &
+
+# Pipe for volume
+mkfifo $xobpipesdir/vol
+tail -f $xobpipesdir/vol | xob &

@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+launch="picom --daemon"
+kill="killall picom"
+
+if [ "${PICOM_BLUR}" = "true" ]; then
+	launch="${launch} --experimental-backends"
+fi
+
+if [ "${1}" = "-t" ]; then
+	${kill} || ${launch}
+elif [ "${1}" = "-r" ]; then
+	${kill} ; ${launch}
+fi

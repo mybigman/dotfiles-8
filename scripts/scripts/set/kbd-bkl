@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+case $1 in
+    --increase|-i)
+        shift
+        light -s sysfs/leds/smc::kbd_backlight -A $@
+        echo "$(light -s sysfs/leds/smc::kbd_backlight -G)" > /tmp/xobpipes/bkl
+        break
+        ;;
+    --decrease|-d)
+        shift
+        light -s sysfs/leds/smc::kbd_backlight -U $@
+        echo "$(light -s sysfs/leds/smc::kbd_backlight -G)" > /tmp/xobpipes/bkl
+        break
+        ;;
+    --get|-g)
+        light -s sysfs/leds/smc::kbd_backlight -G
+        break
+        ;;
+    --help|-h)
+        echo "Set brightness of keyboard backlight"
+        echo ""
+        echo "USAGE:"
+        echo "  ${0##*/} ACTION [ARG]"
+        echo ""
+        echo "ACTIONS:"
+        echo "  -i, --increase <NUMBER>   Increase brightness"
+        echo "  -d, --decrease <NUMBER>   Decrease brightness"
+        echo "  -g, --get                 Get current brightness"
+        exit 0
+        ;;
+    *)
+        echo "Unknown option '$1' (Try --help)"
+        exit 1
+        ;;
+esac

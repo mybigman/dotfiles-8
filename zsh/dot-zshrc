@@ -1,0 +1,58 @@
+# History
+HISTFILE="${HOME}/.histfile"
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Run pfetch
+pfetch
+
+# Powerlevel10k prompt
+instant_prompt_file="${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+[ -r "${instant_prompt_file}" ] && source "${instant_prompt_file}"
+source ${HOME}/.local/src/powerlevel10k/powerlevel10k.zsh-theme
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir virtualenv vcs vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_DIR_FOREGROUND='black'
+POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+typeset -g POWERLEVEL9K_VI_MODE_{NORMAL,VISUAL}_BACKGROUND='grey'
+typeset -g POWERLEVEL9K_VI_MODE_{NORMAL,VISUAL}_FOREGROUND='white'
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
+POWERLEVEL9K_VI_VISUAL_MODE_STRING='V'
+POWERLEVEL9K_VCS_BACKENDS=(git)
+typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
+
+# Vim mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Autocompletion
+autoload -Uz compinit && compinit
+zstyle ':completion::complete:*' gain-privileges 1
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Aliases
+alias vi="nvim"
+alias svi="doas nvim"
+alias grep="grep --color=auto"
+alias ls="ls --color=auto --human-readable"
+alias l="ls -Al"
+alias ll="ls -l"
+alias la="ls -a"
+alias lla="ls -al"
+alias ga="git add"
+alias gaa="git add --all"
+alias gap="git add --patch"
+alias gco="git commit"
+alias gcom="git commit -m"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gpl="git pull"
+alias gps="git push"
+alias gs="git status"
+alias xi="doas xbps-install"
+alias xr="doas xbps-remove"
+alias xq="doas xbps-query"

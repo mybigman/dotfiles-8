@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+choice="$(echo -e "screen\nselect\nfocused" | dmenu -i -p "screenshot menu:  ")"
+
+if [ "${choice}" = "screen" ]; then
+    scrot -d 1 '%Y-%m-%d_%H-%M-%S_$wx$h_scrot.png' -e 'mv $f ~/photos/screenshots/'
+elif [ "${choice}" = "select" ]; then
+    scrot --select '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/photos/screenshots/'
+elif [ "${choice}" = "focused" ]; then
+    scrot --focused '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/photos/screenshots/'
+fi

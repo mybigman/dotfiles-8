@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+doas sv-status openvpn && status="on" || status="off"
+notify-send -u low "Checking VPN status..."
+notify-send -u low "VPN is $status" "IP Address: $(curl -s ifconfig.co)\nLocation: $(curl -s ifconfig.co/country), $(curl -s ifconfig.co/city)"

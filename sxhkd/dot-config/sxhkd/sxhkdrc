@@ -1,0 +1,164 @@
+## Application hotkeys
+
+super + p
+	dmenu_run
+
+super + shift + Return
+	$TERMINAL
+
+super + shift + f
+	firefox
+
+super + shift + p
+	firefox --private-window
+
+super + shift + m
+	spotify
+	# $SCRIPTS/launch/spotifyd -s && $TERMINAL -e spt
+
+super + shift + g
+	$TERMINAL -e gotop
+
+super + shift + o
+	$TERMINAL -e lf
+
+super + e
+	$SCRIPTS/launch/picom -t
+
+super + {shift,alt} + e
+	export PICOM_BLUR={true,false} && $SCRIPTS/launch/picom -r
+
+super + shift + d
+	$SCRIPTS/launch/spotifyd -r
+
+super + {b,c,o,s,v,w,z}
+	$SCRIPTS/menu/{hue,config,misc,system,vpn,network,screenshot}
+
+
+## Media keys
+
+# Volume
+XF86Audio{Lower,Raise}Volume
+	$SCRIPTS/set/vol -{d,i} 4
+alt + XF86Audio{Lower,Raise}Volume
+	$SCRIPTS/set/vol -{d,i} 10
+XF86AudioMute
+	$SCRIPTS/set/vol -t
+
+# Music
+XF86Audio{Prev,Play,Next}
+	$SCRIPTS/set/song {prev,play-pause,next}
+
+# Screen brightness
+XF86MonBrightness{Down,Up}
+	$SCRIPTS/set/bkl -{d,i} 5
+alt + XF86MonBrightness{Down,Up}
+	$SCRIPTS/set/bkl -{d,i} 10
+
+# Keyboard backlight
+XF86KbdBrightness{Down,Up}
+	$SCRIPTS/set/kbd-bkl -{d,i} 4
+alt + XF86KbdBrightness{Down,Up}
+	$SCRIPTS/set/kbd-bkl -{d,i} 10
+
+# Philips hue lights
+XF86Launch{A,B}
+	$SCRIPTS/set/hue -{d,i} 10
+alt + XF86Launch{A,B}
+	$SCRIPTS/set/hue -{d,i} 100
+shift + XF86Launch{A,B}
+	$SCRIPTS/set/hue -{f,n}
+
+
+## Sxhkd hotkeys
+
+# Reload sxhkd configuration files
+super + Escape
+	pkill -USR1 -x sxhkd
+
+
+# Bspwm hotkeys
+
+# Restart bspwm
+super + shift + r
+	bspc wm -r
+
+# Close and kill
+super + {shift,alt} + q
+	bspc node -{c, k}
+
+# Alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# Send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+
+## State/flags
+
+# Set the window state
+super + {t,shift + t,g,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+
+## Focus/swap
+
+# Focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Focus the next/previous node in the current desktop
+super + {_,shift + }n
+	bspc node -f {next,prev}.local
+
+# Focus the next/previous desktop in the current monitor
+super + {u,i}
+	bspc desktop -f {prev,next}.local
+
+# Focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# Focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+
+## Preselect
+
+# Preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# Cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+## Move/resize
+
+# Expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}

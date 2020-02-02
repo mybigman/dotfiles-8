@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+choice="$(echo -e "on\noff\nscenes" | dmenu -i -p "hue menu:")"
+
+if [ "${choice}" = "scenes" ]; then
+    scene="$(echo "gedimmt" | dmenu -i -p "hue scenes:  ")"
+    if [ "${scene}" = "gedimmt" ]; then
+        code="Civly7nWo-2xvRt"
+    fi
+    hueadm scene ${code}
+else
+    hueadm light 1 ${choice}
+    hueadm light 2 ${choice}
+fi

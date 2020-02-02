@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+[ "$(echo -e "no\nyes" | dmenu -i -p "${1}")" = "yes" ] && shift && ${@}
