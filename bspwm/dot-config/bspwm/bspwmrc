@@ -3,10 +3,10 @@
 killall sxhkd; sxhkd &
 killall dunst; dunst &
 xsetroot -cursor_name left_ptr
-$SCRIPTS/set/wallpaper
-$SCRIPTS/launch/xob
-$SCRIPTS/launch/polybar -r
-$SCRIPTS/launch/picom -r
+${SCRIPTS}/set/wallpaper
+${SCRIPTS}/launch/xob
+${SCRIPTS}/launch/polybar -r
+${SCRIPTS}/launch/picom -r
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
