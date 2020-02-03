@@ -14,6 +14,14 @@ export PATH="${PATH}:${FLUTTER_HOME}/bin"
 export PATH="${PATH}:${DART_SDK}/bin"
 export PATH="${PATH}:${HOME}/.npm-global/bin"
 
+# Set color for man pages
+export LESS_TERMCAP_mb=$'\e[1;34m'
+export LESS_TERMCAP_md=$'\e[1;34m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[0;4;32m'
+
 # Set title color of pfetch
 export PF_COL3=4
 
