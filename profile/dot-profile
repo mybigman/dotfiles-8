@@ -1,8 +1,5 @@
 # Set environment variables for other programs
 export EDITOR="nvim"
-export LESS="-M -R"
-export PAGER="less"
-export MANPAGER="${PAGER}"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export SCRIPTS="${HOME}/scripts"
