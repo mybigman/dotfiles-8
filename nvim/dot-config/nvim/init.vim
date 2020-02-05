@@ -1,5 +1,5 @@
 " Plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
