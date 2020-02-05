@@ -1,6 +1,10 @@
 " Plugins
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/coc-flutter'
+Plug 'josa42/coc-go'
+Plug 'neoclide/coc-python'
+Plug 'neoclide/coc-rls'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
