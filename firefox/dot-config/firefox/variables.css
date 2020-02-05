@@ -1,7 +1,7 @@
 :root {
-    --custom-accent-color: #8AA4F0;
-    --custom-background: #0A0C0D;
-    --custom-background-menu: #1A1C1D;
-    --custom-border: 1px solid #2A2C2D;
-    --custom-foreground: #A0A5A8;
+	--custom-accent-color: #8AA4F0;
+	--custom-background: #0A0C0D;
+	--custom-background-menu: #1A1C1D;
+	--custom-border: 1px solid #2A2C2D;
+	--custom-foreground: #A0A5A8;
 }
