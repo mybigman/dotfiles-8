@@ -9,7 +9,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
 Plug 'rust-lang/rust.vim'
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
 Plug 'vim-airline/vim-airline'
 Plug 'niklas-8/vim-darkspace'
 call plug#end()
