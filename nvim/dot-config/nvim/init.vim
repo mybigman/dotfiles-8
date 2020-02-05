@@ -53,17 +53,17 @@ nnoremap <leader>z :FZF<cr>
 nnoremap <leader>ghp <Plug>(GitGutterPreviewHunk)
 nnoremap <leader>ghu <Plug>(GitGutterUndoHunk)
 nnoremap <leader>ghs <Plug>(GitGutterStageHunk)
-nnoremap <leader>rn <Plug>(coc-rename)
-nnoremap <silent>gd <Plug>(coc-definition)
-nnoremap <silent>gy <Plug>(coc-type-definition)
-nnoremap <silent>gi <Plug>(coc-implementation)
-nnoremap <silent>gr <Plug>(coc-references)
-xnoremap <leader>f <Plug>(coc-format-selected)
-nnoremap <leader>f <Plug>(coc-format-selected)
+nmap <leader>r <Plug>(coc-rename)
+nmap <leader>f <Plug>(coc-format)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
+nnoremap <silent>K :call <sid>show_documentation()<cr>
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <tab>
 	\ pumvisible() ? "\<c-n>" :
-	\ <SID>check_back_space() ? "\<tab>" :
+	\ <sid>check_back_space() ? "\<tab>" :
 	\ coc#refresh()
 
 " Airline plugin
@@ -81,4 +81,11 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
