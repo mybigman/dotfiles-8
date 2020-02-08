@@ -32,7 +32,11 @@ set shiftwidth=4
 set noexpandtab
 set list
 
-" Enable mouse support
+" Window settings
+set splitright
+autocmd FileType fugitive,help wincmd L
+
+" Mouse settings
 set mouse=a
 
 " Hotkeys
