@@ -57,9 +57,13 @@ nnoremap <leader>v :vs<space>
 nnoremap <leader>t :tabnew<space>
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>z :FZF<cr>
-nnoremap <leader>ghp <Plug>(GitGutterPreviewHunk)
-nnoremap <leader>ghu <Plug>(GitGutterUndoHunk)
-nnoremap <leader>ghs <Plug>(GitGutterStageHunk)
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gdiffsplit<cr>
+nnoremap <silent>ghp :GitGutterPreviewHunk<cr>
+nnoremap <silent>ghN :GitGutterPrevHunk<cr>
+nnoremap <silent>ghn :GitGutterNextHunk<cr>
+nnoremap <silent>ghu :GitGutterUndoHunk<cr>
+nnoremap <silent>ghs :GitGutterStageHunk<cr>
 nmap <leader>r <Plug>(coc-rename)
 nmap <leader>f <Plug>(coc-format)
 nmap <silent>gd <Plug>(coc-definition)
