@@ -60,11 +60,20 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>z :FZF<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
-nnoremap <silent>ghp :GitGutterPreviewHunk<cr>
-nnoremap <silent>ghN :GitGutterPrevHunk<cr>
-nnoremap <silent>ghn :GitGutterNextHunk<cr>
-nnoremap <silent>ghu :GitGutterUndoHunk<cr>
-nnoremap <silent>ghs :GitGutterStageHunk<cr>
+nnoremap <leader>gb :Gbrowse<cr>
+nnoremap <leader>ge :Gedit %<cr>
+nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>gl :Gpull<cr>
+nnoremap <leader>gf :GitGutterFold<cr>
+nmap <silent>ghN <Plug>(GitGutterPrevHunk)
+nmap <silent>ghn <Plug>(GitGutterNextHunk)
+nmap <silent>ghp <Plug>(GitGutterPreviewHunk)
+nmap <silent>ghu <Plug>(GitGutterUndoHunk)
+nmap <silent>ghs <Plug>(GitGutterStageHunk)
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 nmap <leader>r <Plug>(coc-rename)
 nmap <leader>f <Plug>(coc-format)
 nmap <silent>gd <Plug>(coc-definition)
