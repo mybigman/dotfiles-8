@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
+Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'niklas-8/vim-darkspace'
 call plug#end()
@@ -58,6 +59,7 @@ nnoremap <leader>v :vs<space>
 nnoremap <leader>t :tabnew<space>
 nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>z :FZF<cr>
+nnoremap <leader>y :Goyo<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
 nnoremap <leader>gb :Gbrowse<cr>
@@ -94,6 +96,12 @@ let g:airline_skip_empty_sections = 1
 
 " Sneak plugin
 let g:sneak#label = 1
+
+" Goyo plugin
+let g:goyo_width = 110
+let g:goyo_height = "100%"
+autocmd! User GoyoEnter set nocursorline
+autocmd! User GoyoLeave set cursorline
 
 " Coc plugin
 set hidden
