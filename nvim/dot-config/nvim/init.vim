@@ -82,10 +82,8 @@ nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
 nnoremap <silent>K :call <sid>show_documentation()<cr>
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <tab>
-	\ pumvisible() ? "\<c-n>" :
-	\ <sid>check_back_space() ? "\<tab>" :
-	\ coc#refresh()
+inoremap <silent><expr> <tab> pumvisible() ? "\<c-n>" :
+	\ <sid>check_back_space() ? "\<tab>" : coc#refresh()
 
 " Plug
 let g:plug_window = "vertical new"
