@@ -19,7 +19,6 @@ Plug 'niklas-8/vim-darkspace'
 call plug#end()
 
 " Appearance
-set encoding=utf-8
 set number relativenumber
 set cursorline
 set termguicolors
