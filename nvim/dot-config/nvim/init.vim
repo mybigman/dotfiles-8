@@ -77,16 +77,19 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-nmap <leader>r <Plug>(coc-rename)
-nmap <leader>f <Plug>(coc-format)
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gy <Plug>(coc-type-definition)
-nmap <silent>gi <Plug>(coc-implementation)
-nmap <silent>gr <Plug>(coc-references)
-nnoremap <silent>K :call <sid>show_documentation()<cr>
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <tab> pumvisible() ? "\<c-n>" :
-	\ <sid>check_back_space() ? "\<tab>" : coc#refresh()
+nmap <leader>r <Plug>(ale_rename)
+nmap <leader>f <Plug>(ale_fix)
+nmap <silent>gd <Plug>(ale_go_to_definition)
+nmap <silent>gy <Plug>(ale_go_to_type_definition)
+nmap <silent>gr <Plug>(ale_find_references)
+nmap <silent>gad <Plug>(ale_detail)
+nmap <silent>gan <Plug>(ale_next_wrap)
+nmap <silent>gaN <Plug>(ale_previous_wrap)
+nmap <silent>K <Plug>(ale_hover)
+imap <c-space> <Plug>(ale_complete)
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Plug
 let g:plug_window = "vertical new"
