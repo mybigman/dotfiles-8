@@ -7,6 +7,7 @@ Plug 'neoclide/coc-python'
 Plug 'neoclide/coc-rls'
 Plug 'cespare/vim-toml'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
