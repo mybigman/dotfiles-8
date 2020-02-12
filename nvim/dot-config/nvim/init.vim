@@ -1,10 +1,6 @@
 " Plugins
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iamcco/coc-flutter'
-Plug 'josa42/coc-go'
-Plug 'neoclide/coc-python'
-Plug 'neoclide/coc-rls'
+Plug 'dense-analysis/ale'
 Plug 'cespare/vim-toml'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -108,18 +104,47 @@ let g:goyo_height = "100%"
 autocmd! User GoyoEnter set nocursorline
 autocmd! User GoyoLeave set cursorline
 
-" Coc plugin
-set hidden
-set updatetime=300
-autocmd CursorHold * silent call CocActionAsync('highlight')
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
-endfunction
+" Ale plugin
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFuncset
+set completeopt=menu,menuone,preview,noselect,noinsert
+" let g:ale_virtualtext_cursor = 1
+" let g:ale_cusor_detail = 1
+let g:ale_linters = {
+	\ 'rust': ['rls', 'cargo'],
+	\ 'go': ['gopls', 'gofmt'],
+	\ }
+let g:ale_rust_cargo_use_clippy = 1
+let g:ale_fixers = {
+	\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+	\ 'rust': ['rustfmt'],
+	\ 'go': ['gofmt', 'goimports'],
+	\ }
+let g:ale_completion_symbols = {
+	\ 'text': '',
+	\ 'method': '',
+	\ 'function': '',
+	\ 'constructor': '',
+	\ 'field': '',
+	\ 'variable': '',
+	\ 'class': '',
+	\ 'interface': '',
+	\ 'module': '',
+	\ 'property': '',
+	\ 'unit': 'unit',
+	\ 'value': 'val',
+	\ 'enum': '',
+	\ 'keyword': '',
+	\ 'snippet': '',
+	\ 'color': '',
+	\ 'file': '',
+	\ 'reference': 'ref',
+	\ 'folder': '',
+	\ 'enum member': '',
+	\ 'constant': '',
+	\ 'struct': '',
+	\ 'event': 'event',
+	\ 'operator': '',
+	\ 'type_parameter': 'type-param',
+	\ '<default>': 'v'
+	\ }
