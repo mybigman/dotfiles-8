@@ -56,6 +56,8 @@ nnoremap <silent>gwk <c-w><c-k>
 nnoremap <silent>gwl <c-w><c-l>
 nnoremap <silent>gpj <c-f>
 nnoremap <silent>gpk <c-b>
+nnoremap <silent>gb :bn<cr>
+nnoremap <silent>gB :bp<cr>
 nnoremap <leader>e :e<space>
 nnoremap <leader>s :sp<space>
 nnoremap <leader>v :vs<space>
