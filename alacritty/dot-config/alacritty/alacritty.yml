@@ -175,7 +175,7 @@ colors:
   # Default colors
   primary:
     background: '0x000000'
-    foreground: '0xd5d8d6'
+    foreground: '0xd0d6df'
 
     # Bright and dim foreground colors
     #
@@ -191,7 +191,7 @@ colors:
   # the cursor color will be the inverse of the cell color.
   cursor:
     text: '0x000000'
-    cursor: '0xd5d8d6'
+    cursor: '0xd0d6df'
 
   # Selection colors
   #
@@ -211,7 +211,7 @@ colors:
     blue:    '0x8aa4f0'
     magenta: '0xc271cc'
     cyan:    '0x76cdd7'
-    white:   '0xd5d8d6'
+    white:   '0xd0d6df'
 
   # Bright colors
   bright:
