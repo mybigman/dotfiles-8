@@ -38,6 +38,7 @@ set list
 
 " Window settings
 set splitright
+set splitbelow
 autocmd FileType fugitive,help wincmd L
 
 " Mouse settings
