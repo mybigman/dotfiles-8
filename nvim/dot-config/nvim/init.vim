@@ -15,6 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'mhinz/vim-startify'
 Plug 'niklas-8/vim-darkspace'
 call plug#end()
 
@@ -106,6 +107,26 @@ let g:goyo_width = 110
 let g:goyo_height = "100%"
 autocmd! User GoyoEnter set nocursorline
 autocmd! User GoyoLeave set cursorline
+
+" Startify plugin
+let g:ascii = [
+	\ '                               __',
+	\ '  ___      __    ___   __  __ /\_\    ___ ___',
+	\ '/'' _ `\  /''__`\ / __`\/\ \/\ \\/\ \ /'' __` __`\',
+	\ '/\ \/\ \/\  __//\ \L\ \ \ \_/ |\ \ \/\ \/\ \/\ \',
+	\ '\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\',
+	\ ' \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/',
+	\ '',
+	\ ]
+let g:startify_custom_header = startify#pad(g:ascii + startify#fortune#boxed())
+let g:startify_lists = [
+	\ { 'type': 'files', 'header': startify#pad(['Recently used files']) },
+	\ { 'type': 'bookmarks', 'header': startify#pad(['Bookmarks']) },
+	\ { 'type': 'sessions', 'header': startify#pad(['Sessions']) },
+	\ ]
+let g:startify_bookmarks = [
+	\ {'c': '.config/nvim/init.vim'},
+	\ ]
 
 " Ale plugin
 let g:ale_completion_enabled = 1
