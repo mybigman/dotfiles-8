@@ -13,8 +13,7 @@ super + shift + p
 	firefox --private-window
 
 super + shift + m
-	spotify
-	# $SCRIPTS/launch/spotifyd -s && $TERMINAL -e spt
+	$SCRIPTS/launch/spotifyd -s && $TERMINAL -e spt
 
 super + shift + g
 	$TERMINAL -e gotop
