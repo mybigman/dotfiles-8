@@ -91,7 +91,7 @@ nmap <silent>gr <Plug>(ale_find_references)
 nmap <silent>gad <Plug>(ale_detail)
 nmap <silent>gan <Plug>(ale_next_wrap)
 nmap <silent>gaN <Plug>(ale_previous_wrap)
-nmap <silent>K <Plug>(ale_hover)
+nmap <silent>gah <Plug>(ale_hover)
 imap <c-space> <Plug>(ale_complete)
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
@@ -134,10 +134,8 @@ let g:startify_bookmarks = [
 
 " Ale plugin
 let g:ale_completion_enabled = 1
-set omnifunc=ale#completion#OmniFuncset
+set omnifunc=ale#completion#OmniFunc
 set completeopt=menu,menuone,preview,noselect,noinsert
-" let g:ale_virtualtext_cursor = 1
-" let g:ale_cusor_detail = 1
 let g:ale_linters = {
 	\ 'rust': ['rls', 'cargo'],
 	\ 'go': ['gopls', 'gofmt'],
