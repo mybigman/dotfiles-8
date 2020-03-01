@@ -23,8 +23,8 @@ set number relativenumber
 set cursorline
 set termguicolors
 set background=dark
-colorscheme darkspace
 let g:darkspace_italics = 1
+colorscheme darkspace
 
 " Tab settings
 set tabstop=4
