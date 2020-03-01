@@ -40,6 +40,10 @@ autocmd FileType fugitive,help wincmd L
 " Mouse settings
 set mouse=a
 
+" Case sensitivity
+set ignorecase
+set smartcase
+
 " Hotkeys
 let mapleader = "\<space>"
 nnoremap <leader>w :w<cr>
