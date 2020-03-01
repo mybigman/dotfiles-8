@@ -10,24 +10,34 @@ setopt hist_reduce_blanks
 # Run pfetch
 pfetch
 
-# Powerlevel10k prompt
-instant_prompt_file="${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-[ -r "${instant_prompt_file}" ] && source "${instant_prompt_file}"
-source ${HOME}/.local/src/powerlevel10k/powerlevel10k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir virtualenv vcs vi_mode)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_DIR_FOREGROUND='black'
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_HOME_ICON=''
-POWERLEVEL9K_HOME_SUB_ICON=''
-typeset -g POWERLEVEL9K_VI_MODE_{NORMAL,VISUAL}_BACKGROUND='grey'
-typeset -g POWERLEVEL9K_VI_MODE_{NORMAL,VISUAL}_FOREGROUND='white'
-POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
-POWERLEVEL9K_VI_VISUAL_MODE_STRING='V'
-POWERLEVEL9K_VCS_BACKENDS=(git)
-typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
+# Prompt
+autoload -Uz vcs_info
+precmd() {
+	vcs_info
+	zstyle ':vcs_info:*' stagedstr '+'
+	zstyle ':vcs_info:*' unstagedstr '!'
+	zstyle ':vcs_info:*' check-for-changes true
+	zstyle ':vcs_info:*' formats '%F{cyan} %b %c%u%m%f '
+	zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-upstream
+	zstyle ':vcs_info:*' enable git
+	function +vi-git-untracked() {
+		if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == "true" ]] && \
+			[[ $(git ls-files --exclude-standard --others 2> /dev/null | wc -l) > 0 ]]; then
+			hook_com[unstaged]+="?"
+		fi
+	}
+	function +vi-git-upstream() {
+		if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == "true" ]]; then
+			local ahead="$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)"
+			local behind="$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)"
+			local text=""
+			[[ "${ahead}" > 0 ]] && text+="↥"
+			[[ "${behind}" > 0 ]] && text+="↧"
+			hook_com[misc]+="${text}"
+		fi
+	}
+	PROMPT="%B%F{blue}%~%f ${vcs_info_msg_0_}%(?.%F{green}.%F{red})%(!.#.$)%f%b "
+}
 
 # Vim mode
 bindkey -v
