@@ -5,20 +5,16 @@ kill="killall spotifyd"
 
 case "$1" in
     "-s")
-        [ "$(ps -Ao fname | grep spotifyd | wc -l)" -gt "0" ] || $launch
-        break
+        [ "$(pgrep spotifyd | wc -l)" -gt "0" ] || "${launch}"
         ;;
     "-r")
-        $kill
-        $launch
-        break
+        "${kill}"
+        "${launch}"
         ;;
     "-k")
-        $kill
-        break
+        "${kill}"
         ;;
     *)
-        $launch
-        break
+        "${launch}"
         ;;
 esac
