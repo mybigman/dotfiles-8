@@ -61,6 +61,7 @@ zstyle ':completion:*' menu select
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
+alias doas="doas "
 alias e="${EDITOR}"
 alias re="doas ${EDITOR}"
 alias grep="grep --color=auto"
