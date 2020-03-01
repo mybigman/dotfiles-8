@@ -1,10 +1,10 @@
 # Set dpi
 xrandr --dpi 140
-xrdb -merge ${HOME}/.Xresources
+xrdb "${HOME}"/.Xresources
 
 # Restart script to check battery status
 pkill -f "${SCRIPTS}/battery/check-status"
-${SCRIPTS}/battery/check-status &
+"${SCRIPTS}"/battery/check-status &
 
 # Restart libinput-gestures
 libinput-gestures-setup restart
