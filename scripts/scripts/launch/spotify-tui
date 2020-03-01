@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-$SCRIPTS/launch/spotifyd -s
-$TERMINAL -e spt
