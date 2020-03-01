@@ -21,11 +21,8 @@ super + shift + g
 super + shift + o
 	$TERMINAL -e lf
 
-super + e
+super + shift + e
 	$SCRIPTS/launch/picom -t
-
-super + {shift,alt} + e
-	export PICOM_BLUR={true,false} && $SCRIPTS/launch/picom -r
 
 super + shift + d
 	$SCRIPTS/launch/spotifyd -r
