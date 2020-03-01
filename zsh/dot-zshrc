@@ -55,7 +55,9 @@ zle -N zle-line-init
 
 # Autocompletion
 autoload -Uz compinit && compinit
+_comp_options+=(globdots)
 zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' menu select
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
