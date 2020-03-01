@@ -11,9 +11,9 @@ if [ "${1}" = "-r" ]; then
 fi
 
 mkdir "${dir}"
-mkfifo "${dir}"/bkl
-tail -f "${dir}"/bkl | xob &
-mkfifo "${dir}"/kbd
-tail -f "${dir}"/kbd | xob &
-mkfifo "${dir}"/vol
-tail -f "${dir}"/vol | xob &
+mkfifo "${dir}/bkl"
+tail -f "${dir}/bkl" | xob &
+mkfifo "${dir}/kbd"
+tail -f "${dir}/kbd" | xob &
+mkfifo "${dir}/vol"
+tail -f "${dir}/vol" | xob &
