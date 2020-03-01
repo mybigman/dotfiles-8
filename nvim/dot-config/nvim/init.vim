@@ -64,7 +64,7 @@ nnoremap <leader>e :e<space>
 nnoremap <leader>s :sp<space>
 nnoremap <leader>v :vs<space>
 nnoremap <leader>t :tabnew<space>
-nnoremap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>n :NERDTreeToggleVCS<cr>
 nnoremap <leader>z :FZF<cr>
 nnoremap <leader>y :Goyo<cr>
 nnoremap <leader>gs :Gstatus<cr>
@@ -99,6 +99,9 @@ inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Plug
 let g:plug_window = "vertical new"
+
+" NERDTree plugin
+let g:NERDTreeShowHidden = 1
 
 " Sneak plugin
 let g:sneak#label = 1
