@@ -64,7 +64,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias vi="nvim"
 alias svi="doas nvim"
 alias grep="grep --color=auto"
-alias ls="ls --color=auto --human-readable"
+alias ls="ls --color=auto --human-readable --group-directories-first"
 alias l="ls -Al"
 alias ll="ls -l"
 alias la="ls -a"
