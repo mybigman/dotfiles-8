@@ -2,10 +2,10 @@
 
 if [ "${1}" = "-r" ]; then
 	killall -q polybar
-	while pgrep -u "${UID:-1000}" -x polybar >/dev/null; do sleep 1; done
-	polybar -c "${HOME}"/.config/polybar/config.ini main &
+	while pgrep -x polybar > /dev/null; do sleep 1; done
+	polybar -c "${HOME}/.config/polybar/config.ini" main &
 elif [ "${1}" = "-k" ]; then
 	killall -q polybar
 else
-	polybar -c "${HOME}"/.config/polybar/config.ini main &
+	polybar -c "${HOME}/.config/polybar/config.ini" main &
 fi
