@@ -54,10 +54,12 @@ nnoremap <silent>gwh <c-w><c-h>
 nnoremap <silent>gwj <c-w><c-j>
 nnoremap <silent>gwk <c-w><c-k>
 nnoremap <silent>gwl <c-w><c-l>
-nnoremap <silent>gpj <c-f>
-nnoremap <silent>gpk <c-b>
 nnoremap <silent>gb :bn<cr>
 nnoremap <silent>gB :bp<cr>
+nmap <silent>gpj <c-d>
+nmap <silent>gpk <c-u>
+nmap <silent>gpn <c-f>
+nmap <silent>gpN <c-b>
 nnoremap <leader>e :e<space>
 nnoremap <leader>s :sp<space>
 nnoremap <leader>v :vs<space>
