@@ -14,7 +14,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
-Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 Plug 'niklas-8/vim-darkspace'
 call plug#end()
@@ -94,10 +93,6 @@ inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Plug
 let g:plug_window = "vertical new"
-
-" Airline plugin
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
 
 " Sneak plugin
 let g:sneak#label = 1
