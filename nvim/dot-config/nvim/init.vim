@@ -26,6 +26,9 @@ set background=dark
 let g:darkspace_italics = 1
 colorscheme darkspace
 
+" Statusline
+runtime statusline.vim
+
 " Tab settings
 set tabstop=4
 set shiftwidth=4
