@@ -12,9 +12,8 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${FLUTTER_HOME}/bin"
 export PATH="${PATH}:${DART_SDK}/bin"
-export PATH="${PATH}:${HOME}/.npm-global/bin"
 
-# Set color for man pages
+# Set colors for man pages
 LESS_TERMCAP_mb="$(printf '%b' '\e[1;34m')"; export LESS_TERMCAP_mb
 LESS_TERMCAP_md="$(printf '%b' '\e[1;34m')"; export LESS_TERMCAP_md
 LESS_TERMCAP_me="$(printf '%b' '\e[0m')"; export LESS_TERMCAP_me
