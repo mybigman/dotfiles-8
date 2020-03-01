@@ -61,8 +61,8 @@ zstyle ':completion:*' menu select
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
-alias vi="nvim"
-alias svi="doas nvim"
+alias e="${EDITOR}"
+alias re="doas ${EDITOR}"
 alias grep="grep --color=auto"
 alias ls="ls --color=auto --human-readable --group-directories-first"
 alias l="ls -Al"
