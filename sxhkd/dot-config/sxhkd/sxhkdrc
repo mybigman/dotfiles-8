@@ -1,6 +1,6 @@
 ## Application hotkeys
 
-super + p
+super + space
 	dmenu_run
 
 super + shift + Return
