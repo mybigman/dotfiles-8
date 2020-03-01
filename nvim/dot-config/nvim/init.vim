@@ -15,7 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
-Plug 'niklas-8/vim-darkspace'
+Plug 'yuqio/vim-darkspace'
 call plug#end()
 
 " Appearance
