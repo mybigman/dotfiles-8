@@ -10,7 +10,7 @@
 
 ## Installation
 
-To automatically symlink the config files install [dotutil](https://github.com/niklas-8/dotutil) and run `dotutil -r` inside the dotfiles directory. Alternatively you can of course symlink the files manually.
+To automatically symlink the config files install [dotutil-sh](https://github.com/yuqio/dotutil-sh) and run `dotutil -r` inside the dotfiles directory. Alternatively you can of course symlink the files manually.
 
 ## Screenshots
 
