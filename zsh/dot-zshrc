@@ -62,8 +62,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
 alias doas="doas "
-alias e="${EDITOR}"
-alias re="doas ${EDITOR}"
+alias v="$EDITOR"
+alias rv="doas $EDITOR"
 alias grep="grep --color=auto"
 alias ls="ls --color=auto --human-readable --group-directories-first"
 alias l="ls -Al"
