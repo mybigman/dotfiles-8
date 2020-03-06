@@ -27,8 +27,8 @@ super + shift + e
 super + shift + d
 	$SCRIPTS/launch/spotifyd -r
 
-super + {b,c,o,s,v,w,z}
-	$SCRIPTS/menu/{hue,config,misc,system,vpn,network,screenshot}
+super + {b,o,s,v,w,z}
+	$SCRIPTS/menu/{hue,misc,system,vpn,network,screenshot}
 
 
 ## Media keys
