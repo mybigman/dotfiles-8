@@ -1,28 +1,24 @@
-highlight StatusLine guifg=#909aaf guibg=#242832
-highlight StatusLineNC guifg=#606a7f guibg=#14161a gui=none cterm=none
-
 augroup Statusline
 	autocmd!
-	autocmd FileType * setlocal statusline=%!DefaultStatusline()
-	autocmd FileType help setlocal statusline=%!HelpStatusline()
-	autocmd FileType nerdtree setlocal statusline=\ \ %{&filetype}
-	autocmd FileType startify setlocal statusline=\ 契%{&filetype}
-	autocmd FileType vim-plug setlocal statusline=\ \ %{&filetype}
+	autocmd WinEnter,BufWinEnter * call SetStatusline()
 augroup END
 
+function! SetStatusline()
+	if &filetype == "help"
+		setlocal statusline=%!HelpStatusline()
+	else
+		setlocal statusline=%!DefaultStatusline()
+	endif
+endfunction
+
 function! DefaultStatusline()
-	let statusline = " ⚫%f %{Modifiable()}"
-	let statusline .= "%{Modified()}"
-	let statusline .= "%{Git()}"
-	let statusline .= "%="
-	let statusline .= "%{Linter()}"
-	let statusline .= "%{Longlines()}"
-	let statusline .= "%l,%c | %p%% %{Filetype()}"
+	let statusline = " ⚫%f %{Modifiable()}%{Modified()}%{GitBranch()}%="
+	let statusline .= "%{Linter()}%{Longlines()}%l,%c | %p%% %{Filetype()}"
 	return statusline
 endfunction
 
 function! HelpStatusline()
-	return "  %{&filetype} | %f%=%l,%c | %p%% "
+	return "  %f%=%l,%c | %p%% %{Filetype()}"
 endfunction
 
 function! Modifiable()
@@ -37,8 +33,9 @@ function! Filetype()
 	return &filetype == "" ? "| - " : "| ".&filetype." "
 endfunction
 
-function! Git()
-	let branch = fugitive#head()
+function! GitBranch()
+	" let branch = fugitive#head()
+	let branch = ""
 	return branch == "" ? "" : "|  ".branch.""
 endfunction
 
