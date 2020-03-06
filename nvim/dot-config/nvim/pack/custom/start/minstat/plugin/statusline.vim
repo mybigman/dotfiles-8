@@ -4,21 +4,22 @@ augroup Statusline
 augroup END
 
 function! SetStatusline()
-	if &filetype == "help"
-		setlocal statusline=%!HelpStatusline()
+	let alt_filetypes = ['help', 'fugitive', 'gitcommit']
+	if index(alt_filetypes, &filetype) != -1
+		setlocal statusline=%!MinimalStatusline()
 	else
 		setlocal statusline=%!DefaultStatusline()
 	endif
 endfunction
 
 function! DefaultStatusline()
-	let statusline = " ⚫%f %{Modifiable()}%{Modified()}%{GitBranch()}%="
+	let statusline = "  %f %{Modifiable()}%{Modified()}%{GitBranch()}%= "
 	let statusline .= "%{Linter()}%{Longlines()}%l,%c | %p%% %{Filetype()}"
 	return statusline
 endfunction
 
-function! HelpStatusline()
-	return "  %f%=%l,%c | %p%% %{Filetype()}"
+function! MinimalStatusline()
+	return "  %f%=%l,%c | %p%% %{Filetype()}"
 endfunction
 
 function! Modifiable()
@@ -34,8 +35,7 @@ function! Filetype()
 endfunction
 
 function! GitBranch()
-	" let branch = fugitive#head()
-	let branch = ""
+	let branch = fugitive#head()
 	return branch == "" ? "" : "|  ".branch.""
 endfunction
 
