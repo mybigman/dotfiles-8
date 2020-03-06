@@ -1,36 +1,11 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-case $1 in
-    --increase|-i)
-        shift
-        light -A $@
-        echo "$(light -G)" > /tmp/xobpipes/bkl
-        break
-        ;;
-    --decrease|-d)
-        shift
-        light -U $@
-        echo "$(light -G)" > /tmp/xobpipes/bkl
-        break
-        ;;
-    --get|-g)
-        light -G
-        break
-        ;;
-    --help|-h)
-        echo "Set brightness of screen backlight"
-        echo ""
-        echo "USAGE:"
-        echo "  ${0##*/} ACTION [ARG]"
-        echo ""
-        echo "ACTIONS:"
-        echo "  -i, --increase <NUMBER>   Increase brightness"
-        echo "  -d, --decrease <NUMBER>   Decrease brightness"
-        echo "  -g, --get                 Get current brightness"
-        exit 0
-        ;;
-    *)
-        echo "Unknown option '$1' (Try --help)"
-        exit 1
-        ;;
-esac
+if [ "$1" = "-d" ]; then
+	light -U "$2"
+	light -G > /tmp/xobpipes/bkl
+elif [ "$1" = "-i" ]; then
+	light -A "$2"
+	light -G > /tmp/xobpipes/bkl
+else
+	exit 1;
+fi

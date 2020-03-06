@@ -1,10 +1,10 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-if [ "${1}" = "mobile" ] || [ "${1}" = "docked" ]; then
-	rm "${HOME}/.Xresources"
-	ln -s "${HOME}/.Xresources.${1}" "${HOME}/.Xresources"
+if [ "$1" = "mobile" ] || [ "$1" = "docked" ]; then
+	rm "$HOME/.Xresources"
+	ln -s "$HOME/.Xresources.$1" "$HOME/.Xresources"
 	xrandr --output HDMI1 --off --output HDMI2 --off --output VIRTUAL1 --off
-	if [ "${1}" = "mobile" ]; then
+	if [ "$1" = "mobile" ]; then
 		xrandr --output eDP1 --mode 2560x1600 --pos 0x0 --rotate normal
 		xrandr --output DP1 --off
 		xrandr --output DP2 --off
@@ -13,7 +13,7 @@ if [ "${1}" = "mobile" ] || [ "${1}" = "docked" ]; then
 		xrandr --output DP1 --mode 1680x1050 --pos 0x0 --rotate left
 		xrandr --output DP2 --primary --mode 2560x1440 --pos 1050x0 --rotate normal
 	fi
-	echo "Changed screen to ${1}. Log out to set dpi"
+	echo "Changed screen to $1. Log out to set dpi"
 else
-	echo "Unkown option ${1}. Valid options are 'mobile' and 'docked'"
+	echo "Unkown option $1. Valid options are 'mobile' and 'docked'"
 fi
