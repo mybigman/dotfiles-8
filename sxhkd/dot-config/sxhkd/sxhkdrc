@@ -15,8 +15,8 @@ super + shift + p
 super + shift + m
 	$SCRIPTS/launch/spotifyd -s && $TERMINAL -e spt
 
-super + shift + g
-	$TERMINAL -e gotop
+super + shift + t
+	$TERMINAL -e btm
 
 super + shift + o
 	$TERMINAL -e lf
