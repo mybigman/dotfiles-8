@@ -1,35 +1,33 @@
 " Plugins
-call plug#begin()
-Plug 'dense-analysis/ale'
-Plug 'cespare/vim-toml'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'andrewradev/splitjoin.vim'
-Plug 'justinmk/vim-sneak'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf'
-Plug 'junegunn/goyo.vim'
-Plug 'mhinz/vim-startify'
-Plug 'yuqio/vim-darkspace'
-call plug#end()
+packadd minpac
+call minpac#init()
+call minpac#add("dense-analysis/ale")
+call minpac#add("cespare/vim-toml")
+call minpac#add("airblade/vim-gitgutter")
+call minpac#add("tpope/vim-fugitive")
+call minpac#add("tpope/vim-rhubarb")
+call minpac#add("andrewradev/splitjoin.vim")
+call minpac#add("tpope/vim-commentary")
+call minpac#add("tpope/vim-surround")
+call minpac#add("justinmk/vim-sneak")
+call minpac#add("tpope/vim-repeat")
+call minpac#add("cloudhead/neovim-fuzzy")
+call minpac#add("romainl/vim-tinyMRU")
+call minpac#add("tpope/vim-obsession")
+call minpac#add("justinmk/vim-dirvish")
+call minpac#add("junegunn/goyo.vim")
+command! PackUpdate source $MYVIMRC | call minpac#update()
+command! PackClean source $MYVIMRC | call minpac#clean()
+command! PackStatus source $MYVIMRC | call minpac#status()
 
 " Appearance
 set number relativenumber
 set cursorline
 set termguicolors
-set background=dark
-let g:darkspace_italics = 1
-colorscheme darkspace
-
-" Statusline
-runtime statusline.vim
+colorscheme mincol
 
 " Tab settings
+inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
@@ -38,42 +36,38 @@ set list
 " Window settings
 set splitright
 set splitbelow
-autocmd FileType fugitive,help wincmd L
+autocmd FileType fugitive,minpac,help wincmd L
 
-" Mouse settings
+" Miscellaneous
 set mouse=a
-
-" Case sensitivity
+set updatetime=100
 set ignorecase
 set smartcase
 
 " Hotkeys
 let mapleader = "\<space>"
-nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
-nnoremap <leader>d :wq<cr>
-nnoremap <leader>c <c-w>c
 nnoremap <silent>gwh <c-w><c-h>
 nnoremap <silent>gwj <c-w><c-j>
 nnoremap <silent>gwk <c-w><c-k>
 nnoremap <silent>gwl <c-w><c-l>
 nnoremap <silent>gb :bn<cr>
 nnoremap <silent>gB :bp<cr>
-nmap <silent>gpj <c-d>
-nmap <silent>gpk <c-u>
-nmap <silent>gpn <c-f>
-nmap <silent>gpN <c-b>
-nnoremap <leader>e :e<space>
-nnoremap <leader>s :sp<space>
-nnoremap <leader>v :vs<space>
-nnoremap <leader>t :tabnew<space>
-nnoremap <leader>n :NERDTreeToggleVCS<cr>
-nnoremap <leader>z :FZF<cr>
+nnoremap <silent>gpj <c-d>
+nnoremap <silent>gpk <c-u>
+nnoremap <silent>gpn <c-f>
+nnoremap <silent>gpN <c-b>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>e :wq<cr>
+nnoremap <leader>c <c-w>c
+nnoremap <leader>ft :tabnew\|:FuzzyOpen<cr>
+nnoremap <leader>fe :FuzzyOpen<cr>
+nnoremap <leader>fg :FuzzyGrep<cr>
+nnoremap <leader>d :Dirvish %<cr>
 nnoremap <leader>y :Goyo<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
 nnoremap <leader>gb :Gbrowse<cr>
-nnoremap <leader>ge :Gedit %<cr>
 nnoremap <leader>gp :Gpush<cr>
 nnoremap <leader>gl :Gpull<cr>
 nnoremap <leader>gf :GitGutterFold<cr>
@@ -86,8 +80,8 @@ omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
 xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-nmap <leader>r <Plug>(ale_rename)
-nmap <leader>f <Plug>(ale_fix)
+nmap <leader>ar <Plug>(ale_rename)
+nmap <leader>af <Plug>(ale_fix)
 nmap <silent>gd <Plug>(ale_go_to_definition)
 nmap <silent>gy <Plug>(ale_go_to_type_definition)
 nmap <silent>gr <Plug>(ale_find_references)
@@ -100,14 +94,16 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
 
-" Plug
-let g:plug_window = "vertical new"
-
-" NERDTree plugin
-let g:NERDTreeShowHidden = 1
+" Dirvish plugin
+let g:dirvish_mode = ':sort ,^.*[\/],'
+autocmd VimEnter * silent! au! FileExplorer *
+autocmd FileType dirvish nmap <silent><buffer>h <Plug>(dirvish_up)
+autocmd FileType dirvish nmap <silent><buffer>l <cr>
+autocmd FileType dirvish nmap <silent><buffer>v V
 
 " Sneak plugin
 let g:sneak#label = 1
+let g:sneak#s_next = 1
 
 " Goyo plugin
 let g:goyo_width = 110
@@ -115,40 +111,18 @@ let g:goyo_height = "100%"
 autocmd! User GoyoEnter set nocursorline
 autocmd! User GoyoLeave set cursorline
 
-" Startify plugin
-let g:ascii = [
-	\ '                               __',
-	\ '  ___      __    ___   __  __ /\_\    ___ ___',
-	\ '/'' _ `\  /''__`\ / __`\/\ \/\ \\/\ \ /'' __` __`\',
-	\ '/\ \/\ \/\  __//\ \L\ \ \ \_/ |\ \ \/\ \/\ \/\ \',
-	\ '\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\',
-	\ ' \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/',
-	\ '',
-	\ ]
-let g:startify_custom_header = startify#pad(g:ascii + startify#fortune#boxed())
-let g:startify_lists = [
-	\ { 'type': 'files', 'header': startify#pad(['Recently used files']) },
-	\ { 'type': 'bookmarks', 'header': startify#pad(['Bookmarks']) },
-	\ { 'type': 'sessions', 'header': startify#pad(['Sessions']) },
-	\ ]
-let g:startify_bookmarks = [
-	\ {'c': '.config/nvim/init.vim'},
-	\ ]
-
 " Ale plugin
-let g:ale_completion_enabled = 1
-set omnifunc=ale#completion#OmniFunc
-set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_linters = {
-	\ 'rust': ['rls', 'cargo'],
-	\ 'go': ['gopls', 'gofmt'],
+	\ 'rust': ['rls'],
 	\ }
-let g:ale_rust_cargo_use_clippy = 1
 let g:ale_fixers = {
 	\ '*': ['remove_trailing_lines', 'trim_whitespace'],
 	\ 'rust': ['rustfmt'],
-	\ 'go': ['gofmt', 'goimports'],
 	\ }
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_completion_symbols = {
 	\ 'text': '',
 	\ 'method': '',
