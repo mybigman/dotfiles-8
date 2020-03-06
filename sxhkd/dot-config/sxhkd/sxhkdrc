@@ -59,11 +59,11 @@ alt + XF86KbdBrightness{Down,Up}
 
 # Philips hue lights
 XF86Launch{A,B}
-	$SCRIPTS/set/hue -{d,i} 10
+	huectl set-group 1 --on --brightness 10{-,+}
 alt + XF86Launch{A,B}
-	$SCRIPTS/set/hue -{d,i} 100
+	huectl set-group 1 --on --brightness {0,100}
 shift + XF86Launch{A,B}
-	$SCRIPTS/set/hue -{f,n}
+	huectl set-group 1 --{off,on}
 
 
 ## Sxhkd hotkeys
