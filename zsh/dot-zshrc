@@ -86,3 +86,13 @@ alias gs="git status"
 alias xi="doas xbps-install"
 alias xr="doas xbps-remove"
 alias xq="doas xbps-query"
+
+# Functions
+function fv() {
+	file="$(find "${1:-.}" -type f -printf "%P\n" | fzf)"
+	[ "$file" ] && "$EDITOR" "${1:-.}/$file"
+}
+function fcd() {
+	dir="$(find "${1:-.}" -type d -printf "%P\n" | fzf)"
+	[ "$dir" ] && cd "${1:-.}/$dir"
+}
