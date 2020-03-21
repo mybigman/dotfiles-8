@@ -1,4 +1,6 @@
 " Plugins
+packadd minstat
+packadd mincol
 packadd minpac
 call minpac#init()
 call minpac#add("dense-analysis/ale")
@@ -9,10 +11,10 @@ call minpac#add("tpope/vim-rhubarb")
 call minpac#add("andrewradev/splitjoin.vim")
 call minpac#add("tpope/vim-commentary")
 call minpac#add("tpope/vim-surround")
-call minpac#add("justinmk/vim-sneak")
 call minpac#add("tpope/vim-repeat")
-call minpac#add("cloudhead/neovim-fuzzy")
-call minpac#add("romainl/vim-tinyMRU")
+call minpac#add("justinmk/vim-sneak")
+call minpac#add("junegunn/fzf")
+call minpac#add("junegunn/fzf.vim")
 call minpac#add("tpope/vim-obsession")
 call minpac#add("justinmk/vim-dirvish")
 call minpac#add("junegunn/goyo.vim")
@@ -23,26 +25,26 @@ command! PackStatus source $MYVIMRC | call minpac#status()
 " Appearance
 set number relativenumber
 set cursorline
+set list
 set termguicolors
 colorscheme mincol
 
 " Tab settings
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
-set list
+set softtabstop=4
+set expandtab
+set autoindent
+filetype plugin indent on
 
 " Window settings
-set splitright
-set splitbelow
+set splitright splitbelow
 autocmd FileType fugitive,minpac,help wincmd L
 
 " Miscellaneous
 set mouse=a
 set updatetime=100
-set ignorecase
-set smartcase
+set ignorecase smartcase
 
 " Hotkeys
 let mapleader = "\<space>"
@@ -55,41 +57,41 @@ nnoremap <silent>gB :bp<cr>
 nnoremap <silent>gpj <c-d>
 nnoremap <silent>gpk <c-u>
 nnoremap <silent>gpn <c-f>
-nnoremap <silent>gpN <c-b>
+nnoremap <silent>gpp <c-b>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>e :wq<cr>
 nnoremap <leader>c <c-w>c
-nnoremap <leader>ft :tabnew\|:FuzzyOpen<cr>
-nnoremap <leader>fe :FuzzyOpen<cr>
-nnoremap <leader>fg :FuzzyGrep<cr>
+nnoremap <leader>ze :Files<cr>
+nnoremap <leader>zl :Lines<cr>
+nnoremap <leader>zt :tabnew\|:Files<cr>
 nnoremap <leader>d :Dirvish %<cr>
 nnoremap <leader>y :Goyo<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiffsplit<cr>
 nnoremap <leader>gb :Gbrowse<cr>
-nnoremap <leader>gp :Gpush<cr>
-nnoremap <leader>gl :Gpull<cr>
+nnoremap <leader>gps :Gpush<cr>
+nnoremap <leader>gpl :Gpull<cr>
 nnoremap <leader>gf :GitGutterFold<cr>
-nmap <silent>ghN <Plug>(GitGutterPrevHunk)
-nmap <silent>ghn <Plug>(GitGutterNextHunk)
-nmap <silent>ghp <Plug>(GitGutterPreviewHunk)
-nmap <silent>ghu <Plug>(GitGutterUndoHunk)
-nmap <silent>ghs <Plug>(GitGutterStageHunk)
-omap ih <Plug>(GitGutterTextObjectInnerPending)
-omap ah <Plug>(GitGutterTextObjectOuterPending)
-xmap ih <Plug>(GitGutterTextObjectInnerVisual)
-xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-nmap <leader>ar <Plug>(ale_rename)
-nmap <leader>af <Plug>(ale_fix)
-nmap <silent>gd <Plug>(ale_go_to_definition)
-nmap <silent>gy <Plug>(ale_go_to_type_definition)
-nmap <silent>gr <Plug>(ale_find_references)
-nmap <silent>gad <Plug>(ale_detail)
-nmap <silent>gan <Plug>(ale_next_wrap)
-nmap <silent>gaN <Plug>(ale_previous_wrap)
-nmap <silent>gah <Plug>(ale_hover)
-imap <c-space> <Plug>(ale_complete)
+nmap <silent>ghj <plug>(GitGutterNextHunk)
+nmap <silent>ghk <plug>(GitGutterPrevHunk)
+nmap <silent>ghp <plug>(GitGutterPreviewHunk)
+nmap <silent>ghu <plug>(GitGutterUndoHunk)
+nmap <silent>ghs <plug>(GitGutterStageHunk)
+omap ih <plug>(GitGutterTextObjectInnerPending)
+omap ah <plug>(GitGutterTextObjectOuterPending)
+xmap ih <plug>(GitGutterTextObjectInnerVisual)
+xmap ah <plug>(GitGutterTextObjectOuterVisual)
+nmap <leader>lr <plug>(ale_rename)
+nmap <leader>lf <plug>(ale_fix)
+nmap <leader>ld <plug>(ale_detail)
+nmap <leader>lh <plug>(ale_hover)
+nmap <silent>glj <plug>(ale_next_wrap)
+nmap <silent>glk <plug>(ale_previous_wrap)
+nmap <silent>gld <plug>(ale_go_to_definition)
+nmap <silent>glt <plug>(ale_go_to_type_definition)
+nmap <silent>glf <plug>(ale_find_references)
+imap <c-space> <plug>(ale_complete)
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
@@ -97,13 +99,22 @@ inoremap <expr><cr> pumvisible() ? "\<c-y>" : "\<cr>"
 " Dirvish plugin
 let g:dirvish_mode = ':sort ,^.*[\/],'
 autocmd VimEnter * silent! au! FileExplorer *
-autocmd FileType dirvish nmap <silent><buffer>h <Plug>(dirvish_up)
+autocmd FileType dirvish nmap <silent><buffer>h <plug>(dirvish_up)
 autocmd FileType dirvish nmap <silent><buffer>l <cr>
 autocmd FileType dirvish nmap <silent><buffer>v V
 
 " Sneak plugin
 let g:sneak#label = 1
 let g:sneak#s_next = 1
+
+" Fzf plugin
+let g:fzf_layout = { "down": "10" }
+let g:fzf_colors = {
+	\ "bg+": ["bg", "Visual"],
+	\ "hl": ["fg", "Directory"],
+	\ "hl+": ["fg", "Directory"],
+	\ "prompt": ["fg", "Directory"],
+	\ }
 
 " Goyo plugin
 let g:goyo_width = 110
