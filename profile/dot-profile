@@ -2,16 +2,16 @@
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
-export SCRIPTS="${HOME}/scripts"
-export ANDROID_HOME="${HOME}/.local/src/android-sdk"
-export FLUTTER_HOME="${HOME}/.local/src/flutter"
-export DART_SDK="${FLUTTER_HOME}/bin/cache/dart-sdk"
+export SCRIPTS="$HOME/scripts"
+export ANDROID_HOME="$HOME/.local/src/android-sdk"
+export FLUTTER_HOME="$HOME/.local/src/flutter"
+export DART_SDK="$FLUTTER_HOME/bin/cache/dart-sdk"
 
 # Add directories to PATH
-export PATH="${PATH}:${HOME}/.local/bin"
-export PATH="${PATH}:${HOME}/.cargo/bin"
-export PATH="${PATH}:${FLUTTER_HOME}/bin"
-export PATH="${PATH}:${DART_SDK}/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$FLUTTER_HOME/bin"
+export PATH="$PATH:$DART_SDK/bin"
 
 # Set colors for man pages
 LESS_TERMCAP_mb="$(printf '%b' '\e[1;34m')"; export LESS_TERMCAP_mb
@@ -21,5 +21,14 @@ LESS_TERMCAP_se="$(printf '%b' '\e[0m')"; export LESS_TERMCAP_se
 LESS_TERMCAP_ue="$(printf '%b' '\e[0m')"; export LESS_TERMCAP_ue
 LESS_TERMCAP_us="$(printf '%b' '\e[4;32m')"; export LESS_TERMCAP_us
 
+# Set path to pipes for xob
+export XOBPIPES="/tmp/xobpipes"
+
 # Set title color of pfetch
-export PF_COL3=4
+export PF_COL3="4"
+
+# Set default options for fzf
+export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --height 10 --color=16,hl:12,hl+:12,bg+:8,fg+:15,gutter:0,pointer:15"
+
+# Source private .profile
+source "$HOME/.profile.private"
