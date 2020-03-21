@@ -13,7 +13,7 @@ super + shift + p
 	firefox --private-window
 
 super + shift + m
-	$SCRIPTS/launch/spotifyd -s && $TERMINAL -e spt
+	pgrep spotifyd || spotifyd && $TERMINAL -e spt
 
 super + shift + t
 	$TERMINAL -e btm
@@ -22,40 +22,37 @@ super + shift + o
 	$TERMINAL -e lf
 
 super + shift + e
-	$SCRIPTS/launch/picom -t
+	killall picom || picom --daemon
 
 super + shift + d
-	$SCRIPTS/launch/spotifyd -r
+	killall spotifyd; spotifyd
 
-super + {b,o,s,v,w,z}
-	$SCRIPTS/menu/{hue,misc,system,vpn,network,screenshot}
+super + {o,s,v,w,z}
+	$SCRIPTS/menu/{misc,system,vpn,network,screenshot}
 
 
 ## Media keys
 
 # Volume
-XF86Audio{Lower,Raise}Volume
-	$SCRIPTS/set/vol -{d,i} 4
-alt + XF86Audio{Lower,Raise}Volume
-	$SCRIPTS/set/vol -{d,i} 10
+XF86Audio{Lower,Raise}Volume{_, + alt}
+	pamixer --{decrease,increase} {4,10} && \
+	pamixer --get-volume > $XOBPIPES/vol
 XF86AudioMute
-	$SCRIPTS/set/vol -t
+	pamixer --toggle-mute
 
 # Music
 XF86Audio{Prev,Play,Next}
-	$SCRIPTS/set/song {prev,play-pause,next}
+	spotifyctl {prev,play-pause,next}
 
 # Screen brightness
-XF86MonBrightness{Down,Up}
-	$SCRIPTS/set/bkl -{d,i} 5
-alt + XF86MonBrightness{Down,Up}
-	$SCRIPTS/set/bkl -{d,i} 10
+XF86MonBrightness{Down,Up}{_, + alt}
+	light -{U,A} {4,10} && \
+	light -G > $XOBPIPES/bkl
 
 # Keyboard backlight
-XF86KbdBrightness{Down,Up}
-	$SCRIPTS/set/kbd-bkl -{d,i} 4
-alt + XF86KbdBrightness{Down,Up}
-	$SCRIPTS/set/kbd-bkl -{d,i} 10
+XF86KbdBrightness{Down,Up}{_, + alt}
+	light -s sysfs/leds/smc::kbd_backlight -{U,A} {4,10} && \
+	light -s sysfs/leds/smc::kbd_backlight -G > $XOBPIPES/bkl
 
 # Philips hue lights
 XF86Launch{A,B}
@@ -117,9 +114,10 @@ super + {_,shift + }n
 super + {u,i}
 	bspc desktop -f {prev,next}.local
 
+
 # Focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+super + {_,shift + }Tab
+	bspc {desktop,node} -f last
 
 # Focus or send to the given desktop
 super + {_,shift + }{1-9,0}
