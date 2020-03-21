@@ -1,23 +1,28 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
+# Initialization
+xsetroot -cursor_name left_ptr
+setroot --zoom "$HOME/photos/wallpaper/default"
 killall sxhkd; sxhkd &
 killall dunst; dunst &
-xsetroot -cursor_name left_ptr
-"${SCRIPTS}"/set/wallpaper
-"${SCRIPTS}"/launch/xob -r
-"${SCRIPTS}"/launch/polybar -r
-"${SCRIPTS}"/launch/picom -r
+killall picom; picom --daemon
+killall polybar; polybar -c "$HOME/.config/polybar/config.ini" main &
+killall xob; mkdir "$XOBPIPES"
+mkfifo "$XOBPIPES/bkl"; pkill -f "tail -f $XOBPIPES/bkl"; tail -f "$XOBPIPES/bkl" | xob &
+mkfifo "$XOBPIPES/kbd"; pkill -f "tail -f $XOBPIPES/kbd"; tail -f "$XOBPIPES/kbd" | xob &
+mkfifo "$XOBPIPES/vol"; pkill -f "tail -f $XOBPIPES/vol"; tail -f "$XOBPIPES/vol" | xob &
 
+# Set desktops
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
-bspc config border_width         2
-bspc config window_gap           18
-bspc config split_ratio          0.5
+# Configuration
+bspc config border_width 2
+bspc config window_gap 18
+bspc config split_ratio 0.5
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
 
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
-
-bspc config remove_disabled_monitors    true
-bspc config remove_unplugged_monitors   true
-
+# Rules
 bspc rule -a Zathura state=tiled
