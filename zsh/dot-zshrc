@@ -60,6 +60,9 @@ zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' menu select
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Aliases
 alias doas="doas "
 alias v="$EDITOR"
