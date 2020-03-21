@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if [ "${1}" = "-s" ]; then
-	[ "$(pgrep spotifyd | wc -l)" -gt "0" ] || spotifyd
-elif [ "${1}" = "-r" ]; then
-	killall spotifyd; spotifyd
-fi

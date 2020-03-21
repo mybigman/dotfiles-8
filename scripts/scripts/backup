@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-rsync -aAXv / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} ${1}

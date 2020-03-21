@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-choice="$(ls -1d $(find ${HOME}/media) | dmenu -i -l 20 -p "play media:")"
-[ ${?} = 0 ] && mpv "${choice}"

@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if [ "${1}" = "-t" ]; then
-	killall picom || picom --daemon
-elif [ "${1}" = "-r" ]; then
-	killall picom; picom --daemon
-fi

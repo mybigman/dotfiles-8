@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-charge_full=$(cat /sys/class/power_supply/BAT0/charge_full)
-charge_full_design=$(cat /sys/class/power_supply/BAT0/charge_full_design)
-capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-charge_div=$(( 1000 * ${charge_full} / ${charge_full_design} ))
-percentage=$(( 1000 * ${capacity} / ${charge_div} ))
-echo ${percentage}
