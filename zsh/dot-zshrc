@@ -43,14 +43,9 @@ precmd() {
 bindkey -v
 bindkey "^?" backward-delete-char
 export KEYTIMEOUT=1
-zle-keymap-select () {
-	[ "$KEYMAP" = "vicmd" ] && printf "\033[2 q" || printf "\033[6 q"
-}
+zle-keymap-select () { [ "$KEYMAP" = "vicmd" ] && printf "\033[2 q" || printf "\033[6 q" }
 zle -N zle-keymap-select
-zle-line-init () {
-	zle -K viins
-	printf "\033[6 q"
-}
+zle-line-init () { zle -K viins; printf "\033[6 q" }
 zle -N zle-line-init
 
 # Autocompletion
