@@ -28,11 +28,6 @@ let s:line3 = '#606a7f'
 let s:line4 = '#14161a'
 
 function! s:HL(group, fg, bg, attr)
-    let l:attr = a:attr
-    if l:attr ==# 'italic'
-        let l:attr = 'none'
-    endif
-
     if !empty(a:fg)
         exec 'hi ' . a:group . ' guifg=' . a:fg
     endif
@@ -40,7 +35,7 @@ function! s:HL(group, fg, bg, attr)
         exec 'hi ' . a:group . ' guibg=' . a:bg
     endif
     if !empty(a:attr)
-        exec 'hi ' . a:group . ' gui=' . l:attr . ' cterm=' . l:attr
+        exec 'hi ' . a:group . ' gui=' . a:attr . ' cterm=' . a:attr
     endif
 endfun
 
